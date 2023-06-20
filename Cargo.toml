@@ -6,13 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 
-[workspace]
-members = [
-    "ai",
-    "api",
-    "data_source",
-    "model",
-]
-
 
 [dependencies]
+ai = { path = "ai" }
+model = { path = "model" }
+api = { path = "api" }
+data_source = { path = "data_source" }

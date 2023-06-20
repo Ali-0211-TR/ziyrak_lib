@@ -1,5 +1,5 @@
 [package]
-name = "api"
+name = "ziyrak_lib-api"
 version = "0.1.0"
 edition = "2021"
 
