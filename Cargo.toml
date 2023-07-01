@@ -6,9 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 
-
 [dependencies]
-ai = { path = "ai" }
-model = { path = "model" }
-api = { path = "api" }
-data_source = { path = "data_source" }
+dotenvy = "0.15"
+surrealdb = { version = "1.0.0-beta.9", features = ["kv-rocksdb"] }
+tokio = { version = "1.28.0", features = ["macros", "rt-multi-thread"] }
+serde = { version = "1.0.0", features = ["derive"] }
+opencv="0.80.0"
+chrono = "0.4"
+url="2.2.2"
+rand = "0.8"
