@@ -2459,6 +2459,7 @@ dependencies = [
  "opencv",
  "rand",
  "serde",
+ "serde_json",
  "surrealdb",
  "tokio",
  "url",
