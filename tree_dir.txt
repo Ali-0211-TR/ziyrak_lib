@@ -1,0 +1,43 @@
+./ZIYRAK_LIB
+├── Cargo.lock
+├── Cargo.toml
+├── README.md
+├── src
+│   ├── ai
+│   │   └── mod.rs
+│   ├── api
+│   │   └── mod.rs
+│   ├── lib_core
+│   │   └── mod.rs
+│   ├── lib.rs
+│   ├── model
+│   │   ├── camera.rs
+│   │   ├── mod.rs
+│   │   ├── notification.rs
+│   │   ├── photo.rs
+│   │   └── video.rs
+│   └── z_surreal_orm
+│       ├── Cargo.lock
+│       ├── Cargo.toml
+│       ├── examples
+│       ├── src
+│       │   ├── core
+│       │   │   ├── generators.rs
+│       │   │   ├── mod.rs
+│       │   │   └── separators.rs
+│       │   ├── lib.rs
+│       │   ├── query
+│       │   │   └── mod.rs
+│       │   └── sql
+│       │       ├── mod.rs
+│       │       ├── output.rs
+│       │       └── statement
+│       │           ├── create.rs
+│       │           ├── delete.rs
+│       │           ├── insert.rs
+│       │           ├── mod.rs
+│       │           ├── select.rs
+│       │           └── update.rs
+│       └── tests
+└── tree_dir.txt
+

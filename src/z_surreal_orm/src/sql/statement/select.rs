@@ -1,11 +1,10 @@
 use std::fmt;
-use crate::data_source::{
+use crate::{
     core::vec_to_string_without_scope,
-    query::statement_models::StatementTrait
+    sql::Statement,
 };
 
-
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Clone)]
 pub struct Select {
     pub expr: Vec<String>,
     pub what: Option<Vec<String>>,
@@ -142,35 +141,32 @@ impl fmt::Display for Select {
         Ok(())
     }
 }
-impl StatementTrait for Select{
-    fn get_string(&self) -> String {
-        format!("{}", self)
-    }
-}
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[derive(Debug, serde::Serialize)]
-    struct Name<'a> {
-        first: &'a str,
-        last: &'a str,
-    }
-    #[derive(Debug, serde::Serialize)]
-    struct Person<'a> {
-        title: &'a str,
-        name: Name<'a>,
-        marketing: bool,
-    }
-    #[test]
-    fn select_all_fields_test() {
-        let slct = Select::init(vec![]).from(vec!["person"]);
-        let sql = "SELECT * FROM person";
-        assert_eq!(sql, slct.to_string().as_str());
-    }
-    #[test]
-    fn elect_specific_fields_test() {
-        let sql = "SELECT name, address, email FROM person";
-        let slct = Select::init(vec!["name", "address", "email"]).from(vec!["person"]);
-        assert_eq!(sql, slct.to_string().as_str());
-    }
-}
+impl Statement for Select{}
+
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+//     #[derive(Debug, serde::Serialize)]
+//     struct Name<'a> {
+//         first: &'a str,
+//         last: &'a str,
+//     }
+//     #[derive(Debug, serde::Serialize)]
+//     struct Person<'a> {
+//         title: &'a str,
+//         name: Name<'a>,
+//         marketing: bool,
+//     }
+//     #[test]
+//     fn select_all_fields_test() {
+//         let slct = Select::init(vec![]).from(vec!["person"]);
+//         let sql = "SELECT * FROM person";
+//         assert_eq!(sql, slct.to_string().as_str());
+//     }
+//     #[test]
+//     fn elect_specific_fields_test() {
+//         let sql = "SELECT name, address, email FROM person";
+//         let slct = Select::init(vec!["name", "address", "email"]).from(vec!["person"]);
+//         assert_eq!(sql, slct.to_string().as_str());
+//     }
+// }

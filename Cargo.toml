@@ -1,10 +1,19 @@
 [package]
 name = "ziyrak_lib"
 version = "0.1.0"
+authors = ["Alishan Usmanov <xgamexarkon@gmail.com>"]
 edition = "2021"
+rust-version = "1.69.0"
+description = "A Rust library for project Ziyrak."
+readme = "README.md"
+repository = "https://github.com/Ali-0211-TR/ziyrak_lib.git"
+
+[workspace]
+members = [
+    "src/z_surreal_orm",
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 
 [dependencies]
 dotenvy = "0.15"
@@ -16,3 +25,13 @@ opencv="0.80.0"
 chrono = "0.4"
 url="2.2.2"
 rand = "0.8"
+
+
+# [features]
+# defailt = ["z_surreal_orm"]
+
+
+
+# [dependencies.z_surreal_orm]
+# path = "src/z_surreal_orm"
+# optional = true

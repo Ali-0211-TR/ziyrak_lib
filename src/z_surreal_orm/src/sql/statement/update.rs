@@ -1,9 +1,10 @@
-use crate::data_source::{
+use std::fmt;
+use crate::{
     core::vec_to_string_without_scope,
-    Output,
-    query::statement_models::StatementTrait
+    sql::{Output, Statement}
 };
-#[derive(Debug, Default)]
+
+#[derive(Debug, Default, Clone)]
 pub struct Update {
     pub what: String,
     pub data: Option<Vec<String>>,
@@ -44,8 +45,8 @@ impl Update {
     }
 }
 
-impl std::fmt::Display for Update {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl fmt::Display for Update {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "UPDATE {}", self.what)?;
         if let Some(ref v) = self.data {
             let v = vec_to_string_without_scope(&v);
@@ -70,8 +71,4 @@ impl std::fmt::Display for Update {
     }
 }
 
-impl StatementTrait for Update{
-    fn get_string(&self) -> String {
-        format!("{}", self)
-    }
-}
+impl Statement for Update{}

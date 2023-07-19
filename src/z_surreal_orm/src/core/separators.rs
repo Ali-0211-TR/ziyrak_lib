@@ -1,3 +1,7 @@
+use std::collections::BTreeMap;
+use serde_json::{self, Value};
+
+
 pub fn vec_to_string_without_scope<T: ToString>(v: &Vec<T>) -> String {
     let mut s = String::new();
 
@@ -38,9 +42,8 @@ pub fn separate_fields_and_values<T: serde::Serialize>(
     (fields, values)
 }
 
-use std::collections::BTreeMap;
-use serde_json::{Value};
-fn json_to_map(json_str: &str) -> std::result::Result<BTreeMap<String, String>, String> {
+
+pub fn json_to_map(json_str: &str) -> std::result::Result<BTreeMap<String, String>, String> {
     let json_value: Value = serde_json::from_str(json_str).expect("Error epta");
     if let Value::Object(obj) = json_value {
         let mut map = BTreeMap::new();
@@ -71,15 +74,4 @@ pub fn separate_values(
     let btm = json_to_map(json_obj_str.as_str())?;
     let values: Vec<String> = btm.values().map(|v| v.clone()).collect();
     Ok(values)
-}
-#[cfg(test)]
-mod tests{
-    #[derive(Debug, Default, serde::Serialize)]
-        struct TestPerson {
-            name: String,
-            phone: String,
-            age: u32,
-        }
-       
-   
 }

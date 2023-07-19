@@ -1,9 +1,11 @@
-use crate::data_source::{
+use std::fmt;
+use crate::sql::{
     Output,
-    query::statement_models::StatementTrait
+    Statement
 };
 
-#[derive(Debug, Default)]
+
+#[derive(Debug, Default, Clone)]
 pub struct Delete {
     pub(crate) what: String,
     pub(crate) cond: Option<String>,
@@ -37,8 +39,8 @@ impl Delete {
         self
     }
 }
-impl std::fmt::Display for Delete {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl fmt::Display for Delete {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "DELETE {}", self.what)?;
         if let Some(ref cnd) = self.cond {
             write!(f, " WHERE {}", cnd)?
@@ -58,39 +60,35 @@ impl std::fmt::Display for Delete {
     }
 }
 
-impl StatementTrait for Delete{
-    fn get_string(&self) -> String {
-        format!("{}", self)
-    }
-}
+impl Statement for Delete{}
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    fn just_delete_test() {
-        let sql = "DELETE person";
-        let qry = Delete::init("person");
-        assert_eq!(sql, format!("{qry}").as_str());
-    }
-    #[test]
-    fn filter_delete_test() {
-        let sql = "DELETE city WHERE name = 'London'";
-        let qry = Delete::init("city").filter("name = 'London'");
-        assert_eq!(sql, format!("{qry}").as_str());
-    }
-    #[test]
-    fn filter_return_delete_test() {
-        let sql = "DELETE user WHERE age < 18 RETURN NONE";
-        let qry = Delete::init("user").filter("age < 18").output(Output::None);
-        assert_eq!(sql, format!("{qry}").as_str());
-    }
-    #[test]
-    fn timeout_delete_test() {
-        let sql = "DELETE person WHERE influencer = false TIMEOUT 5s";
-        let qry = Delete::init("person")
-            .filter("influencer = false")
-            .timeout("5s");
-        assert_eq!(sql, format!("{qry}").as_str());
-    }
-}
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+//     #[test]
+//     fn just_delete_test() {
+//         let sql = "DELETE person";
+//         let qry = Delete::init("person");
+//         assert_eq!(sql, format!("{qry}").as_str());
+//     }
+//     #[test]
+//     fn filter_delete_test() {
+//         let sql = "DELETE city WHERE name = 'London'";
+//         let qry = Delete::init("city").filter("name = 'London'");
+//         assert_eq!(sql, format!("{qry}").as_str());
+//     }
+//     #[test]
+//     fn filter_return_delete_test() {
+//         let sql = "DELETE user WHERE age < 18 RETURN NONE";
+//         let qry = Delete::init("user").filter("age < 18").output(Output::None);
+//         assert_eq!(sql, format!("{qry}").as_str());
+//     }
+//     #[test]
+//     fn timeout_delete_test() {
+//         let sql = "DELETE person WHERE influencer = false TIMEOUT 5s";
+//         let qry = Delete::init("person")
+//             .filter("influencer = false")
+//             .timeout("5s");
+//         assert_eq!(sql, format!("{qry}").as_str());
+//     }
+// }

@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./src/z_surreal_orm/Cargo.toml"
+    ]
+}
