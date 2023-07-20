@@ -15,13 +15,14 @@ pub struct Create {
     tmout: Option<String>,
     paral: bool,
 }
-//! 
+///
 pub fn create(what: &str) -> Create {
     Create::init(what)
 }
 
 impl Create {
-    pub fn content<T: serde::Serialize>(mut self, obj: &T) -> Create {
+    /// 
+    pub fn content<T: serde::Serialize>(mut self, obj: T) -> Create {
         self.data = Some(match obj_to_string(obj) {
             Ok(str_data) => str_data,
             ////////>>>>Стоит пересмотреть!
