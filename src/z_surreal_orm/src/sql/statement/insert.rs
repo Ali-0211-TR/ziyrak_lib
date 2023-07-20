@@ -47,8 +47,8 @@ impl Insert {
         self.fields = Some(t);
         self
     }
-    pub fn value<T: serde::Serialize>(mut self, obj: &T) -> Insert {
-        let obj = match obj_to_string(&obj) {
+    pub fn value<T: serde::Serialize>(mut self, obj: T) -> Insert {
+        let obj = match obj_to_string(obj) {
             Ok(str_data) => str_data,
             ////////>>>>Стоит пересмотреть!
             Err(e) => {

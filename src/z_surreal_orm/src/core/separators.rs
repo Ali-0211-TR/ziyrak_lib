@@ -15,8 +15,8 @@ pub fn vec_to_string_without_scope<T: ToString>(v: &Vec<T>) -> String {
 
     s
 }
-pub fn obj_to_string<T: serde::Serialize>(obj: &T) -> serde_json::Result<String> {
-    serde_json::to_string(obj)
+pub fn obj_to_string<T: serde::Serialize>(obj: T) -> serde_json::Result<String> {
+    serde_json::to_string(&obj)
 }
 pub fn separate_fields_and_values<T: serde::Serialize>(
     obj: T,
