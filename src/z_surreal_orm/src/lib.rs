@@ -24,7 +24,7 @@ use surrealdb::{
 };
 // Z  ->   
 #[async_trait]
-trait ZrkSurrealOrm<C: Connection> {
+pub trait ZrkSurrealOrm<C: Connection> {
     type QueryType<'a>: 'a where Self: 'a;
 
     fn zrk_orm_statement<'a, S: Statement>(&'a self, statement: S) -> Self::QueryType<'a>;
@@ -60,7 +60,7 @@ impl<C: Connection> ZrkSurrealOrm<C> for Surreal<C> {
         }
     }
 }
-trait ZrkSurrealOrmQuery<'a, C: Connection> {
+pub trait ZrkSurrealOrmQuery<'a, C: Connection> {
 
     fn zrk_orm_statement<S: Statement>(self, statement: S) -> method::Query<'a, C>;
 }
