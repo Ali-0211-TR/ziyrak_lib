@@ -39,7 +39,7 @@ use async_trait::async_trait;
 use surrealdb::{
     Connection, Response, Surreal, method
 };
-/// Трейт для рассширении Surreal
+/// Трейт для рассширении `surrealdb::Surreal` and `surrealdb::method::Query`
 #[async_trait]
 pub trait ZrkSurrealOrm<C: Connection> {
     type QueryType<'a>: 'a where Self: 'a;
@@ -142,6 +142,8 @@ impl<C: Connection> ZrkSurrealOrm<C> for Surreal<C> {
         }
     }
 }
+
+/// Трейт для рассширении `surrealdb::Surreal` 
 pub trait ZrkSurrealOrmQuery<'a, C: Connection> {
     /// Метод аналогичен `query`, но с небольшим отличием: в аргументах ожидается `Statement` из нашего ORM.
     /// Возвращает то же, что и `query`.

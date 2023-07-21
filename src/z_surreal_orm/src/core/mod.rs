@@ -1,3 +1,9 @@
+//! Модуль для функциональности обработки Vec, JSON, Map, String.
+//! Оно очень важно для форматирование всех `z_surreal_orm::sql` вырожений
+//! Для парсера строк и конвертации типов
+//! 
+
+
 pub(crate) mod generators;
 pub(crate) mod separators;
 
