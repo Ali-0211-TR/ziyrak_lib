@@ -1,5 +1,16 @@
 use std::fmt;
 
+
+/// Перечисления для возврата значений в Sql запросов
+/// #Пример в Sql
+/// ```
+/// // Create a new record with a random id
+/// CREATE person SET name = 'Tobie', company = 'SurrealDB', skills = ['Rust', 'Go', 'JavaScript'] RETURN AFTER; // default
+/// // Create a new record with a specific numeric id
+/// CREATE person:100 SET name = 'Tobie', company = 'SurrealDB', skills = ['Rust', 'Go', 'JavaScript'] RETURN BEFORE;
+/// // Create a new record with a specific string id
+/// CREATE person:tobie SET name = 'Tobie', company = 'SurrealDB', skills = ['Rust', 'Go', 'JavaScript'] RETURN NONE;
+/// ```
 #[derive(Debug, Clone)]
 pub enum Output {
     None,
